@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "sdk_version": "0.23.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://ydyaqeivkozlhzrjlfag.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "bidpilot-ai-mcp",
+      "version": "0.1.0",
+      "title": "BidPilot AI"
+    },
+    "tools": [
+      {
+        "name": "list_negotiations",
+        "title": "List negotiations",
+        "description": "List the signed-in user's negotiations, most recent first. Returns id, title, vertical, workflow_status, moving_date, and created_at.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Max negotiations to return (default 25)."
+            },
+            "status": {
+              "type": "string",
+              "description": "Optional workflow_status filter, e.g. DRAFT, IN_NEGOTIATION."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_negotiation",
+        "title": "Get negotiation",
+        "description": "Fetch a single negotiation the user owns, including the latest confirmed job spec version and current workflow status.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "negotiation_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "UUID of the negotiation."
+            }
+          },
+          "required": [
+            "negotiation_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_providers",
+        "title": "List providers",
+        "description": "List providers attached to a negotiation the user owns.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "negotiation_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "UUID of the negotiation."
+            }
+          },
+          "required": [
+            "negotiation_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_quotes",
+        "title": "List quotes",
+        "description": "List saved quotes for a negotiation, including line items. Useful for comparing providers and computing verified savings.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "negotiation_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "UUID of the negotiation."
+            }
+          },
+          "required": [
+            "negotiation_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_calls",
+        "title": "List calls",
+        "description": "List agent calls (provider rehearsals and live calls) for a negotiation, including outcomes and status.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "negotiation_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "UUID of the negotiation."
+            }
+          },
+          "required": [
+            "negotiation_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "recent_agent_events",
+        "title": "Recent agent events",
+        "description": "Return recent agent events for a negotiation — useful to summarize what the negotiation agent has been doing.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "negotiation_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "UUID of the negotiation."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Max events to return (default 20)."
+            }
+          },
+          "required": [
+            "negotiation_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
