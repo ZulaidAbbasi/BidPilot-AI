@@ -1,0 +1,217 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* Hide the injected Lovable badge and its floating close button entirely. */
+#lovable-badge,
+#lovable-badge *,
+[id^="lovable-badge"],
+a[href*="lovable.dev"][target="_blank"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-verified: var(--verified);
+  --color-verified-foreground: var(--verified-foreground);
+  --color-verified-soft: var(--verified-soft);
+  --color-warn: var(--warn);
+  --color-warn-foreground: var(--warn-foreground);
+  --color-warn-soft: var(--warn-soft);
+  --color-risk: var(--risk);
+  --color-risk-foreground: var(--risk-foreground);
+  --color-risk-soft: var(--risk-soft);
+  --color-live: var(--live);
+  --color-live-foreground: var(--live-foreground);
+  --color-live-soft: var(--live-soft);
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Base surfaces — professional light, neutral app bg + white content */
+  --background: oklch(0.985 0.004 250);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.97 0.006 250);
+  --foreground: oklch(0.19 0.045 262);
+  --navy: oklch(0.22 0.055 262);
+  --navy-soft: oklch(0.36 0.06 262);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(0.22 0.055 262);
+  --primary-foreground: oklch(0.99 0.003 240);
+  --secondary: oklch(0.96 0.008 250);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.965 0.006 250);
+  --muted-foreground: oklch(0.48 0.028 258);
+  --accent: oklch(0.955 0.016 250);
+  --accent-foreground: var(--foreground);
+
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.99 0.003 240);
+
+  /* Slightly stronger borders for definition (was too soft) */
+  --border: oklch(0.905 0.01 252);
+  --input: oklch(0.885 0.012 252);
+  --ring: oklch(0.55 0.09 262);
+
+  --verified: oklch(0.55 0.14 158);
+  --verified-foreground: oklch(0.99 0.003 240);
+  --verified-soft: oklch(0.955 0.05 158);
+  --warn: oklch(0.72 0.16 78);
+  --warn-foreground: oklch(0.32 0.08 60);
+  --warn-soft: oklch(0.97 0.06 90);
+  --risk: oklch(0.58 0.22 27);
+  --risk-foreground: oklch(0.99 0.003 240);
+  --risk-soft: oklch(0.965 0.05 27);
+  --live: oklch(0.58 0.16 250);
+  --live-foreground: oklch(0.99 0.003 240);
+  --live-soft: oklch(0.955 0.04 250);
+
+  --sidebar: oklch(0.98 0.005 250);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--navy);
+  --sidebar-primary-foreground: oklch(0.99 0.003 240);
+  --sidebar-accent: oklch(0.945 0.014 252);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: oklch(0.9 0.01 252);
+  --sidebar-ring: var(--ring);
+
+  --shadow-elevated:
+    0 1px 0 0 color-mix(in oklab, oklch(0.22 0.055 262) 5%, transparent),
+    0 8px 24px -14px color-mix(in oklab, oklch(0.22 0.055 262) 22%, transparent);
+  --shadow-card:
+    0 1px 0 0 color-mix(in oklab, oklch(0.22 0.055 262) 4%, transparent);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html, body { height: 100%; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-navy);
+    letter-spacing: -0.018em;
+    font-weight: 600;
+  }
+  h1 { letter-spacing: -0.022em; }
+  ::selection { background: color-mix(in oklab, var(--verified) 30%, transparent); }
+
+  /* Tabular numerals globally for values in tables/metrics/prices */
+  .tabular, .num, [data-numeric] { font-variant-numeric: tabular-nums; }
+
+  /* Cleaner, calmer app background — no fake gradients */
+  .app-shell {
+    background: var(--color-background);
+  }
+
+  /* Nicer focus ring */
+  :where(a, button, [role="button"], input, textarea, select):focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--ring) 60%, transparent);
+    outline-offset: 2px;
+    border-radius: calc(var(--radius) - 4px);
+  }
+}
+
+@utility status-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+}
+
+@utility live-pulse {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    background: color-mix(in oklab, var(--live) 40%, transparent);
+    animation: bp-pulse 1.6s ease-out infinite;
+  }
+}
+
+@keyframes bp-pulse {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@utility kbd-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-muted-foreground);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-bottom-width: 2px;
+  border-radius: calc(var(--radius) - 3px);
+}
+
+@utility card-elevated {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
